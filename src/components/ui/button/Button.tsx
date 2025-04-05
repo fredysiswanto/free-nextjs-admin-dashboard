@@ -12,6 +12,7 @@ interface ButtonProps {
   className?: string;
   as?: "button" | "a" | "link";
   href?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   as = "button",
   href = "#",
-}) => {
+}: ButtonProps) => {
   const sizeClasses = {
     sm: "px-4 py-3 text-sm",
     md: "px-5 py-3.5 text-sm",
