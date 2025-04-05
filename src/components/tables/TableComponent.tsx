@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { redirect } from "next/navigation";
 import { TCustomer } from "@/data/customer";
+import Input from "@/components/form/input/InputField";
 
 type TableProps<TData> = {
   data: TData[];
@@ -22,7 +23,7 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [sorting, setSorting] = useState<any[]>([]);
   const [filtering, setFiltering] = useState("");
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
   const handelView = (dataUser: TCustomer) => {
     const userId = dataUser.user_id;
@@ -70,65 +71,76 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
   });
 
   return (
-    <div className="w-full rounded-lg border p-4 shadow-md">
-      <input
-        className="mb-4 w-full rounded border border-gray-300 p-2"
-        placeholder="Search..."
-        value={filtering}
-        onChange={(e) => setFiltering(e.target.value)}
-      />
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="bg-gray-200">
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  onClick={header.column.getToggleSortingHandler()}
-                  className="cursor-pointer border border-gray-300 p-2"
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                  {header.column.getIsSorted() === "asc"
-                    ? " 🔼"
-                    : header.column.getIsSorted() === "desc"
-                      ? " 🔽"
-                      : ""}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="odd:bg-white even:bg-gray-100">
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border border-gray-300 p-2">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="mt-4 flex items-center justify-between">
-        <button
-          className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </button>
-        <span>Page {table.getState().pagination.pageIndex + 1}</span>
-        <button
-          className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </button>
+    <div className="overflow-hidden dark:border-white/[0.05] dark:bg-white/[0.03]">
+      <div className="max-w-full overflow-x-auto">
+        <div className="max-w-[1102px]">
+          <div className="overflow-x-auto">
+            <div className="mb-4 w-1/3">
+              <Input
+                className="rounded border border-gray-300 p-2"
+                placeholder="Search..."
+                value={filtering}
+                onChange={(e) => setFiltering(e.target.value)}
+              />
+            </div>
+            <table className="min-w-[1102px]">
+              <thead>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id} className="bg-gray-200">
+                    {headerGroup.headers.map((header) => (
+                      <th
+                        key={header.id}
+                        onClick={header.column.getToggleSortingHandler()}
+                        className="cursor-pointer border border-gray-300 p-2"
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                        {header.column.getIsSorted() === "asc"
+                          ? " 🔼"
+                          : header.column.getIsSorted() === "desc"
+                            ? " 🔽"
+                            : ""}
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {table.getRowModel().rows.map((row) => (
+                  <tr key={row.id} className="odd:bg-white even:bg-gray-100">
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id} className="border border-gray-300 p-2">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 flex items-center justify-between">
+            <button
+              className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous
+            </button>
+            <span>Page {table.getState().pagination.pageIndex + 1}</span>
+            <button
+              className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

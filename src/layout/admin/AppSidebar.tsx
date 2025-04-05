@@ -18,29 +18,16 @@ import {
   UserCircleIcon,
 } from "../../icons/index";
 import SidebarWidget from "./SidebarWidget";
+import { myMenu } from "@/data/sidebar-menu";
 
-type NavItem = {
+export type NavItem = {
   name: string;
   icon: React.ReactNode;
   path?: string;
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
 
-const navMyItems: NavItem[] = [
-  {
-    icon: <GridIcon />,
-    name: "Dashboard",
-    path: "/admin",
-  },
-  {
-    icon: <UserCircleIcon />,
-    name: "Users",
-    subItems: [
-      { name: "Users", path: "/admin/users" },
-      { name: "Add Users", path: "/admin/users/create" },
-    ],
-  },
-];
+const navMyItems: NavItem[] = myMenu;
 
 const navItems: NavItem[] = [
   {

@@ -2,8 +2,7 @@ import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import TableComponent from "@/components/tables/TableComponent";
 
-import { customerList } from "@/data/customer";
-import Button from "@/components/ui/button/Button";
+import { restaurantList } from "@/data/resto-admin";
 
 export default function CustomersPage() {
   const columnsData = [
@@ -21,19 +20,19 @@ export default function CustomersPage() {
     },
   ];
 
-  const { data } = customerList;
+  const { data } = restaurantList;
 
   return (
     <div>
       <PageBreadcrumb pageTitle="Customers" />
       <div className="space-y-6">
-        <div className="relative">
+        {/* <div className="relative">
           <div className="absolute top-5 right-6 z-10">
             <Button size="sm" as="link" href="/admin/customers/create">
               Create User
             </Button>
           </div>
-        </div>
+        </div> */}
         <ComponentCard title="List Customers">
           <TableComponent columns={columnsData} data={data} />
         </ComponentCard>

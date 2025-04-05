@@ -174,7 +174,7 @@ export const restoAdminListSchema = {
   },
 };
 
-export const restoAdminList = {
+export const restaurantList = {
   draw: 1,
   data: [
     {
