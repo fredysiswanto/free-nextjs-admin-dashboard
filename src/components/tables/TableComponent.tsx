@@ -13,6 +13,7 @@ import {
 import { redirect } from "next/navigation";
 import { TCustomer } from "@/data/customer";
 import Input from "@/components/form/input/InputField";
+import Button from "@/components/ui/button/Button";
 
 type TableProps<TData> = {
   data: TData[];
@@ -124,21 +125,23 @@ const TableComponent = <TData,>({ data, columns }: TableProps<TData>) => {
             </table>
           </div>
           <div className="mt-4 flex items-center justify-between">
-            <button
+            <Button
+              size="xs"
               className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
               Previous
-            </button>
+            </Button>
             <span>Page {table.getState().pagination.pageIndex + 1}</span>
-            <button
+            <Button
+              size="xs"
               className="rounded border border-gray-300 px-4 py-2 disabled:opacity-50"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
               Next
-            </button>
+            </Button>
           </div>
         </div>
       </div>

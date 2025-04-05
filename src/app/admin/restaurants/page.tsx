@@ -44,7 +44,7 @@ export default function RestaurantsPage() {
       <div className="space-y-6">
         <div className="relative">
           <div className="absolute top-5 right-6 z-10">
-            <Button size="sm" as="link" href="/admin/resta/create">
+            <Button size="xs" as="link" href="/admin/resta/create">
               Create Restaurant
             </Button>
           </div>
