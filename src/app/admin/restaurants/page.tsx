@@ -1,7 +1,7 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import TableComponent from "@/components/tables/TableComponent";
-import Button from "@/components/ui/button/Button";
+import { ButtonCard } from "@/components/ui/button/ButtonCard";
 import { restaurantList } from "@/data/resto-admin";
 
 export default function RestaurantsPage() {
@@ -42,13 +42,9 @@ export default function RestaurantsPage() {
     <div>
       <PageBreadcrumb pageTitle="Restaurant" />
       <div className="space-y-6">
-        <div className="relative">
-          <div className="absolute top-5 right-6 z-10">
-            <Button size="xs" as="link" href="/admin/resta/create">
-              Create Restaurant
-            </Button>
-          </div>
-        </div>
+        <ButtonCard size="xs" href="/admin/resta/create">
+          Create Restaurant
+        </ButtonCard>
         <ComponentCard title="List Restaurant">
           <TableComponent columns={columnsData} data={data} />
         </ComponentCard>

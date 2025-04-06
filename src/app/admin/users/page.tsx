@@ -3,7 +3,7 @@ import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import TableComponent from "@/components/tables/TableComponent";
 import { Metadata } from "next";
 import { customerList } from "@/data/customer";
-import Button from "@/components/ui/button/Button";
+import { ButtonCard } from "@/components/ui/button/ButtonCard";
 
 export const metadata: Metadata = {
   title: "Next.js Blank Page | TailAdmin - Next.js Dashboard Template",
@@ -32,13 +32,9 @@ export default function UsersPage() {
     <div>
       <PageBreadcrumb pageTitle="Users" />
       <div className="space-y-6">
-        <div className="relative">
-          <div className="absolute top-5 right-6 z-10">
-            <Button size="sm" as="link" href="/admin/users/create">
-              Create User
-            </Button>
-          </div>
-        </div>
+        <ButtonCard size="xs" href="/admin/users/create">
+          Create User
+        </ButtonCard>
         <ComponentCard title="List Users">
           <TableComponent columns={columnsData} data={data} />
         </ComponentCard>
